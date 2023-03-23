@@ -9,6 +9,7 @@ class MyDB {
      * create and save a new ticket.
      * @param {string} username 
      * @param {number} price 
+     * @param {Ticket} return a ticket object.
      */
     create(username, price) {
         const ticket = new Ticket(username, price);
@@ -16,9 +17,20 @@ class MyDB {
         return ticket;
     }
 
-    // bulk ticket
-    bulkCreate() {
-
+    /**
+     * Create multiple ticket
+     * @param {string} username
+     * @param {number} price
+     * @param {number} quantity
+     * @returns {Array<Ticket>} 
+     */
+    bulkCreate(username, price, quantity) {
+        const result = [];
+        for(i = 0; i<quantity; i++){
+            const ticket = this.create(username, price);
+            result.push(ticket)
+        }
+        return result;
     }
 
     // return all tickets
